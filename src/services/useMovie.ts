@@ -1,9 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 
+const baseUrl = import.meta.env.VITE_OMDB_BASE_URL;
+const apiKey = import.meta.env.VITE_OMDB_API_KEY;
+
 const fetchSearchMovie = async (movieTitle: string) => {
-  const response = await fetch(
-    `https://www.omdbapi.com/?apikey=b08342ba&t=${movieTitle}&plot=full`
-  );
+  const params = new URLSearchParams({
+    apikey: apiKey || "",
+    t: movieTitle,
+    plot: "full",
+  });
+
+  const url = `${baseUrl}?${params}`;
+
+  const response = await fetch(url);
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }
@@ -11,9 +20,15 @@ const fetchSearchMovie = async (movieTitle: string) => {
 };
 
 const fetchMovie = async (movieID: string) => {
-  const response = await fetch(
-    `https://www.omdbapi.com/?apikey=b08342ba&i=${movieID}&plot=full`
-  );
+  const params = new URLSearchParams({
+    apikey: apiKey || "",
+    i: movieID,
+    plot: "full",
+  });
+
+  const url = `${baseUrl}?${params}`;
+
+  const response = await fetch(url);
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }
