@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useMovieQuery } from "@/services/useMovie";
-import { Button } from "antd";
+import { Button, Spin, Alert } from "antd";
 
 export default function Movie() {
   const { id } = useParams();
@@ -21,9 +21,13 @@ export default function Movie() {
       </Button>
       <div className="flex justify-center">
         {isLoading ? (
-          <div>Loading...</div>
+          <Spin size="large" />
         ) : isError ? (
-          <div>Error fetching movie</div>
+          <Alert
+            type="error"
+            message="Error"
+            description="Sorry, something wrong. Please, try again!"
+          />
         ) : (
           <div>
             <h1 className="text-3xl font-bold text-center mb-3">

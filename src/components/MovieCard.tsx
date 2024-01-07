@@ -1,5 +1,5 @@
 import MovieData from "@/types/Movie";
-import { Card } from "antd";
+import { Card, Empty, Spin, Alert } from "antd";
 import { useNavigate } from "react-router-dom";
 
 export default function MovieCard({
@@ -50,10 +50,22 @@ export default function MovieCard({
             </div>
           </Card>
         )}
-        {isLoading && <div className="">Loading...</div>}
-        {isError && <div className="">Error...</div>}
+        {isLoading && <Spin size="large" />}
+        {isError && (
+          <Alert
+            type="error"
+            message="Error"
+            description="Sorry, something wrong. Please, try again!"
+          />
+        )}
         {!isLoading && !isError && movie && !movie.Title && (
-          <span>Not found</span>
+          <Empty
+            description={
+              <span className="font-sm font-bold">
+                Movie not found. Please, try again!
+              </span>
+            }
+          />
         )}
       </div>
     </>
