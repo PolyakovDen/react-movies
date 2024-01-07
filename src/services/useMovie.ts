@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const fetchSearchMovie = async (movieTitle: string) => {
   const response = await fetch(
-    `http://www.omdbapi.com/?apikey=b08342ba&t=${movieTitle}&plot=full`
+    `https://www.omdbapi.com/?apikey=b08342ba&t=${movieTitle}&plot=full`
   );
   if (!response.ok) {
     throw new Error("Network response was not ok");
@@ -12,7 +12,7 @@ const fetchSearchMovie = async (movieTitle: string) => {
 
 const fetchMovie = async (movieID: string) => {
   const response = await fetch(
-    `http://www.omdbapi.com/?apikey=b08342ba&i=${movieID}&plot=full`
+    `https://www.omdbapi.com/?apikey=b08342ba&i=${movieID}&plot=full`
   );
   if (!response.ok) {
     throw new Error("Network response was not ok");
